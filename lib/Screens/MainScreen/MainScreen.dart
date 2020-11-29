@@ -29,22 +29,31 @@ class MainPage extends StatelessWidget {
     MainPageProvider model = context.watch<MainPageProvider>();
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.white,
         // automaticallyImplyLeading: false,
-        title: Text('Main Page'),
-        actions: [
-          FlatButton(
-            onPressed: () async {
-              signOutUser();
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(
-                    builder: (BuildContext context) => WelcomeScreen()),
-                // ModalRoute.withName('/'),
-              );
-            },
-            child: Text("Signout"),
+        centerTitle: true,
+        title: Text(
+          'Emergency Services App',
+          style: TextStyle(
+            color: Theme.of(context).primaryColor,
+            fontWeight: FontWeight.w700,
           ),
+        ),
+        actions: [
+          // FlatButton(
+          //   onPressed: () async {
+          //     signOutUser();
+          //     Navigator.pushReplacement(
+          //       context,
+          //       MaterialPageRoute(
+          //           builder: (BuildContext context) => WelcomeScreen()),
+          //       // ModalRoute.withName('/'),
+          //     );
+          //   },
+          //   child: Text("Signout"),
+          // ),
           IconButton(
+            color: Theme.of(context).primaryColor,
             icon: Icon(Icons.settings),
             onPressed: () => Navigator.push(
               context,
