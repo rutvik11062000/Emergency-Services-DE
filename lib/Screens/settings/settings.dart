@@ -11,7 +11,7 @@ class Settings extends StatelessWidget {
       ),
       body: Container(
         child: Center(
-          child: Text("Settings"),
+          child: Text("hii"),
         ),
       ),
     );
