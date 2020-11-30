@@ -43,14 +43,54 @@ class MainPageProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void showInSnackBar(String value, BuildContext context) {
+  void showInSnackBar(
+      String value, String sucess, String failure, BuildContext context) {
     // print(user);
     bool b = false;
     if (value == _user['passcode']) {
-      value = "Pass code match! We are contacting emergency Service";
+      value = sucess;
       b = true;
     } else {
-      value = "Passcode doesn't match, TRY AGAIN!";
+      value = failure;
+    }
+
+    Scaffold.of(context).showSnackBar(
+      new SnackBar(
+          content: new Text(value),
+          backgroundColor: b ? Colors.green : Colors.redAccent),
+    );
+  }
+
+  void showInSnackBar1(String value, String sucess, String failure,
+      List<String> p, BuildContext context) {
+    // print(user);
+    bool b = false;
+    if (value == _user['passcode']) {
+      value = sucess;
+      addFamilyMember(p[1], p[2], _user['userID'], _user['emergency-contacts']);
+      b = true;
+    } else {
+      value = failure;
+    }
+
+    Scaffold.of(context).showSnackBar(
+      new SnackBar(
+          content: new Text(value),
+          backgroundColor: b ? Colors.green : Colors.redAccent),
+    );
+  }
+
+  void showInSnackBar2(String value, String sucess, String failure,
+      List<String> p, BuildContext context) async {
+    // print(user);
+    bool b = false;
+    if (value == _user['passcode']) {
+      value = sucess;
+      addNewPasscode(_user['passcode'], p[1], _user['userID']);
+      await getCurrentUser();
+      b = true;
+    } else {
+      value = failure;
     }
 
     Scaffold.of(context).showSnackBar(

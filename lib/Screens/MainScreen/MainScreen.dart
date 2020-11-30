@@ -54,15 +54,15 @@ class _MainPageState extends State<MainPage> {
           ),
         ),
         actions: [
-          IconButton(
-            color: Theme.of(context).primaryColor,
-            icon: Icon(Icons.settings),
-            onPressed: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (BuildContext context) => Settings()),
-              // ModalRoute.withName('/'),
-            ),
-          ),
+          // IconButton(
+          //   color: Theme.of(context).primaryColor,
+          //   icon: Icon(Icons.account_circle),
+          //   onPressed: () => Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (BuildContext context) => SettingsP()),
+          //     // ModalRoute.withName('/'),
+          //   ),
+          // ),
           IconButton(
             color: Theme.of(context).primaryColor,
 
@@ -81,6 +81,7 @@ class _MainPageState extends State<MainPage> {
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.local_hospital),
@@ -94,6 +95,10 @@ class _MainPageState extends State<MainPage> {
             icon: Icon(Icons.point_of_sale_rounded),
             label: 'history',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
         currentIndex: model.currentIndex,
         selectedItemColor: Color(0xFF6F35A5),
@@ -104,6 +109,7 @@ class _MainPageState extends State<MainPage> {
           EmergencyScreen(),
           ServiceScreen(),
           HistoryScreen(),
+          Settings(),
         ],
         index: model.currentIndex,
       ),

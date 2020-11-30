@@ -5,6 +5,16 @@ FirebaseFirestore db = FirebaseFirestore.instance;
 CollectionReference userRef = db.collection('users');
 // CollectionReference userRef = db.collection('users');
 
+void addFamilyMember(
+    String name, String contact, String uid, List<dynamic> families) {
+  families.add({"name": name, "contact": contact});
+  userRef.doc(uid).update({"emergency-contacts": families});
+}
+
+void addNewPasscode(String old, String newPasscode, String uid) {
+  userRef.doc(uid).update({"passcode": newPasscode});
+}
+
 Future<User> createUserWithEmailPassword(String email, String password) async {
   try {
     // await Firebase.initializeApp();

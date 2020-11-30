@@ -16,9 +16,6 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
   @override
   void initState() {
     _scrollController = ScrollController();
-    // ..addListener(() {
-    //   context.bloc<AppBarCubit>().setOffset(_scrollController.offset);
-    // });
     super.initState();
   }
 
@@ -108,7 +105,11 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
         onPressed: () async {
           String p = await _showMyDialog();
           // print(p);
-          context.read<MainPageProvider>().showInSnackBar(p, context);
+          context.read<MainPageProvider>().showInSnackBar(
+              p,
+              "Key Matched! We're contacting emergency service",
+              "Key doesnt match try again",
+              context);
           // db
           //     .collection('services')
           //     .doc('emergency-services')
