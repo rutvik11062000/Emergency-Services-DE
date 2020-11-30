@@ -33,7 +33,10 @@ class _BodyState extends State<Body> {
     String name = "nmae",
         email = "email",
         contact = "contact",
+        passcode = "passcode",
         password = "pass";
+
+    // int passcode = 0000;
     Size size = MediaQuery.of(context).size;
     return Background(
       child: SingleChildScrollView(
@@ -69,6 +72,14 @@ class _BodyState extends State<Body> {
               },
               icon: Icons.call,
             ),
+            RoundedPassCode(
+              onChanged: (value) {
+                // setState(() {
+                passcode = value;
+                // print(password);
+                // });
+              },
+            ),
             RoundedPasswordField(
               onChanged: (value) {
                 // setState(() {
@@ -82,7 +93,7 @@ class _BodyState extends State<Body> {
               press: () async {
                 // await createUserWithEmailPassword();
                 // print(name + email + contact + password);
-                await addUser(email, contact, name, password);
+                await addUser(email, contact, name, password, passcode);
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(

@@ -6,6 +6,7 @@ import 'package:emergencyfeedback/Screens/settings/settings.dart';
 import 'package:emergencyfeedback/providers/MainPageViewModel.dart';
 import 'package:emergencyfeedback/services/firebase-service.dart';
 import 'package:flutter/material.dart';
+import 'package:emergencyfeedback/providers/MainPageViewModel.dart';
 import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
@@ -21,8 +22,21 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-class MainPage extends StatelessWidget {
+class MainPage extends StatefulWidget {
   const MainPage({Key key}) : super(key: key);
+
+  @override
+  _MainPageState createState() => _MainPageState();
+}
+
+class _MainPageState extends State<MainPage> {
+  @override
+  void initState() {
+    context.read<MainPageProvider>().getCurrentUser();
+    context.read<MainPageProvider>().getServices();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,18 +54,6 @@ class MainPage extends StatelessWidget {
           ),
         ),
         actions: [
-          // FlatButton(
-          //   onPressed: () async {
-          //     signOutUser();
-          //     Navigator.pushReplacement(
-          //       context,
-          //       MaterialPageRoute(
-          //           builder: (BuildContext context) => WelcomeScreen()),
-          //       // ModalRoute.withName('/'),
-          //     );
-          //   },
-          //   child: Text("Signout"),
-          // ),
           IconButton(
             color: Theme.of(context).primaryColor,
             icon: Icon(Icons.settings),
@@ -60,7 +62,22 @@ class MainPage extends StatelessWidget {
               MaterialPageRoute(builder: (BuildContext context) => Settings()),
               // ModalRoute.withName('/'),
             ),
-          )
+          ),
+          IconButton(
+            color: Theme.of(context).primaryColor,
+
+            icon: Icon(Icons.logout),
+            onPressed: () async {
+              signOutUser();
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                    builder: (BuildContext context) => WelcomeScreen()),
+                // ModalRoute.withName('/'),
+              );
+            },
+            // child: Text("Signout"),
+          ),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

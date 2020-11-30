@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 FirebaseFirestore db = FirebaseFirestore.instance;
 CollectionReference userRef = db.collection('users');
+// CollectionReference userRef = db.collection('users');
 
 Future<User> createUserWithEmailPassword(String email, String password) async {
   try {
@@ -46,10 +47,15 @@ Future<void> signOutUser() async {
   await FirebaseAuth.instance.signOut();
 }
 
-Future<void> addUser(
-    String email, String contact, String name, String password) async {
+Future<void> addUser(String email, String contact, String name, String password,
+    String passcode) async {
   User user = await createUserWithEmailPassword(email, password);
 
-  userRef.doc(user.uid).set(
-      {'userID': user.uid, 'email': email, 'contact': contact, 'name': name});
+  userRef.doc(user.uid).set({
+    'userID': user.uid,
+    'email': email,
+    'contact': contact,
+    'name': name,
+    'passcode': passcode
+  });
 }
